@@ -29,9 +29,7 @@
             min-height: 100vh;
         }
 
-        .container { 
-            max-width: 500px; width: 100%; 
-        }
+        .container { max-width: 500px; width: 100%; }
 
         h2 { 
             text-align: center; color: var(--primary); margin: 10px 0 25px 0; 
@@ -40,7 +38,6 @@
             display: flex; justify-content: center; align-items: center; gap: 10px;
         }
         
-        /* Box tìm kiếm */
         .search-container { position: relative; width: 100%; margin-bottom: 25px; }
         .search-box { display: flex; width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         input[type="text"] { 
@@ -54,7 +51,6 @@
             border: none; cursor: pointer; font-weight: 800; text-transform: uppercase;
         }
         
-        /* Gợi ý */
         .suggestions { 
             position: absolute; top: 100%; left: 0; right: 0; 
             background: #1e293b; border-radius: 0 0 8px 8px; z-index: 1000; display: none; 
@@ -64,7 +60,6 @@
         .suggestion-item:last-child { border-bottom: none; }
         .suggestion-item:hover { background: rgba(0, 229, 255, 0.1); color: var(--primary); }
 
-        /* Card Kết quả chính */
         .result-card { 
             display: none; background: var(--card-bg); border-radius: 12px; 
             padding: 25px 20px; border: 1px solid #1e293b; position: relative; 
@@ -73,15 +68,14 @@
         }
         @keyframes slide-up { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Huy hiệu Trạng Thái MỚI (Nằm trên cùng) */
+        /* Huy hiệu trạng thái trên cùng */
         .status-badge { 
             position: absolute; top: -14px; right: 20px; 
             background: #1e293b; color: #fff; border: 1px solid #334155;
             padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: 800; 
             text-transform: uppercase; letter-spacing: 0.5px;
-            display: flex; align-items: center; gap: 6px;
+            display: flex; align-items: center; gap: 6px; z-index: 10;
         }
-        /* Hiệu ứng nhấp nháy êm ái khi đang bay */
         .status-badge.flying {
             background: rgba(0, 255, 163, 0.1); color: var(--success);
             border-color: rgba(0, 255, 163, 0.3);
@@ -93,33 +87,46 @@
             100% { box-shadow: 0 0 0 0 rgba(0, 255, 163, 0); }
         }
 
-        /* Lộ trình & Múi giờ */
+        /* Lộ trình */
         .route { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; }
-        .city-block { text-align: center; }
-        .city-block.left { text-align: left; }
-        .city-block.right { text-align: right; }
+        .city-block { display: flex; flex-direction: column; width: 40%; }
+        .city-block.left { text-align: left; align-items: flex-start; }
+        .city-block.right { text-align: right; align-items: flex-end; }
         
         .city { font-size: 40px; font-weight: 800; color: #fff; line-height: 1.1; }
         .time { font-size: 18px; color: var(--primary); font-weight: 800; margin-top: 5px; text-shadow: 0 0 8px rgba(0,229,255,0.3);}
-        .timezone-info { font-size: 11px; color: var(--text-muted); margin-top: 6px; font-weight: 600;}
+        .timezone-info { font-size: 10px; color: var(--text-muted); margin-top: 6px; font-weight: 600; text-transform: uppercase;}
         
+        /* Thông tin Nhà ga & Cửa */
+        .terminal-gate {
+            font-size: 10px; color: #fff; margin-top: 8px; font-weight: 700; text-transform: uppercase;
+            background: #1e293b; padding: 5px 8px; border-radius: 6px;
+            border: 1px solid #334155; display: inline-block;
+        }
+        
+        /* Nút link mở bản đồ địa điểm */
+        .ext-map-link {
+            font-size: 10px; color: var(--primary); text-decoration: none;
+            margin-top: 6px; display: inline-flex; align-items: center; gap: 4px;
+            font-weight: 800; text-transform: uppercase; transition: 0.3s;
+        }
+        .ext-map-link:hover { color: #fff; text-shadow: 0 0 8px var(--primary); }
+
         .flight-path { flex: 1; text-align: center; position: relative; margin: 25px 15px 0 15px; border-bottom: 2px dashed #334155; }
         .flight-path span { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--card-bg); padding: 0 10px; font-size: 20px; color: var(--primary); }
 
-        /* Khối thông tin chi tiết */
         .details { 
             display: grid; grid-template-columns: 1fr 1fr; gap: 15px; 
             background: #0f151f; padding: 20px; border-radius: 10px; 
             margin-bottom: 25px; border: 1px solid #1e293b;
         }
         .detail-item { display: flex; flex-direction: column; gap: 4px; }
-        .detail-label { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;}
-        .detail-value { font-size: 16px; color: #fff; font-weight: 800; }
+        .detail-label { font-size: 10px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;}
+        .detail-value { font-size: 15px; color: #fff; font-weight: 800; }
         .val-highlight { color: var(--primary); }
         .val-warning { color: var(--warning); }
         .val-success { color: var(--success); }
         
-        /* Cụm nút hành động */
         .action-buttons { display: flex; gap: 10px; justify-content: center; margin-bottom: 10px; flex-wrap: wrap;}
         .btn-outline {
             background: transparent; color: var(--primary); border: 1px solid var(--primary);
@@ -132,14 +139,13 @@
         .btn-map { border-color: #64748b; color: #cbd5e1; }
         .btn-map.active { background: #1e293b; color: #fff; border-color: #fff;}
 
-        /* Vùng chứa bản đồ ẩn/hiện */
+        /* Vùng bản đồ radar */
         #mapContainer { 
-            display: none; /* Mặc định ẩn */
+            display: none; 
             margin-top: 20px; border-top: 1px dashed #334155; padding-top: 20px;
             animation: fade-in 0.3s ease-out;
         }
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-        
         #map { height: 300px; width: 100%; border-radius: 10px; border: 1px solid #334155; }
         .plane-marker { width: 30px; height: 30px; filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.8)); transition: transform 0.5s linear; }
     </style>
@@ -158,22 +164,33 @@
     </div>
 
     <div id="result" class="result-card">
-        <!-- Huy hiệu trạng thái nhảy lên trên cùng -->
         <div id="statusBadge" class="status-badge">
             <span id="statusIcon">⏳</span> <span id="statusText">Đang tải...</span>
         </div>
 
         <div class="route">
+            <!-- Điểm đi -->
             <div class="city-block left">
                 <div id="depCity" class="city">SGN</div>
                 <div id="depTime" class="time">05:35</div>
-                <div id="depTz" class="timezone-info">GMT+7 • Cùng múi giờ</div>
+                <div id="depTz" class="timezone-info">GMT+7</div>
+                
+                <!-- Bổ sung thông tin Ga, Cửa, Tọa độ -->
+                <div id="depTerminalGate" class="terminal-gate">GA T1 • CỬA 14</div>
+                <a id="depMapLink" class="ext-map-link" href="#" target="_blank">📍 Bản đồ Ga đi</a>
             </div>
+            
             <div class="flight-path"><span>✈️</span></div>
+            
+            <!-- Điểm đến -->
             <div class="city-block right">
                 <div id="arrCity" class="city">HAN</div>
                 <div id="arrTime" class="time">07:45</div>
-                <div id="arrTz" class="timezone-info">GMT+7 • Cùng múi giờ</div>
+                <div id="arrTz" class="timezone-info">GMT+7</div>
+                
+                <!-- Bổ sung thông tin Ga, Cửa, Tọa độ -->
+                <div id="arrTerminalGate" class="terminal-gate">GA T1 • CỬA 03</div>
+                <a id="arrMapLink" class="ext-map-link" href="#" target="_blank">📍 Bản đồ Ga đến</a>
             </div>
         </div>
 
@@ -198,10 +215,9 @@
 
         <div class="action-buttons">
             <button class="btn-outline" onclick="setNativeAlarm()">⏰ Đặt Lịch Báo Thức</button>
-            <button id="toggleMapBtn" class="btn-outline btn-map" onclick="toggleMap()">🗺️ Mở Bản Đồ</button>
+            <button id="toggleMapBtn" class="btn-outline btn-map" onclick="toggleMap()">🗺️ Radar Theo Dõi</button>
         </div>
 
-        <!-- Khung bản đồ thu gọn -->
         <div id="mapContainer">
             <div id="map"></div>
         </div>
@@ -209,14 +225,30 @@
 </div>
 
 <script>
-    // Dữ liệu mở rộng chứa thông tin Múi giờ (Tính toán so với giờ Việt Nam GMT+7)
-    const USER_TZ = 7; // Giờ địa phương người dùng (Việt Nam)
+    const USER_TZ = 7;
 
+    // Dữ liệu mở rộng chứa Ga, Cửa (Terminal, Gate)
     const flightData = {
-        "VU750": { dep: "SGN", arr: "HAN", depTime: "05:35", arrTime: "07:45", airline: "Vietravel Airlines", depTz: 7, arrTz: 7, coords: [[10.818, 106.652], [21.218, 105.804]] },
-        "VN123": { dep: "HAN", arr: "SGN", depTime: "10:00", arrTime: "12:15", airline: "Vietnam Airlines", depTz: 7, arrTz: 7, coords: [[21.218, 105.804], [10.818, 106.652]] },
-        "VN300": { dep: "SGN", arr: "NRT", depTime: "00:15", arrTime: "07:45", airline: "Vietnam Airlines", depTz: 7, arrTz: 9, coords: [[10.818, 106.652], [35.772, 140.392]] }, // Đi Nhật (Lệch múi giờ)
-        "VJ198": { dep: "SGN", arr: "HAN", depTime: "14:30", arrTime: "16:40", airline: "VietJet Air", depTz: 7, arrTz: 7, coords: [[10.818, 106.652], [21.218, 105.804]] }
+        "VU750": { 
+            dep: "SGN", arr: "HAN", depTime: "05:35", arrTime: "07:45", airline: "Vietravel Airlines", 
+            depTz: 7, arrTz: 7, depTerminal: "T1 (Quốc nội)", depGate: "14", arrTerminal: "T1 (Quốc nội)", arrGate: "03",
+            coords: [[10.818, 106.652], [21.218, 105.804]] 
+        },
+        "VN123": { 
+            dep: "HAN", arr: "SGN", depTime: "10:00", arrTime: "12:15", airline: "Vietnam Airlines", 
+            depTz: 7, arrTz: 7, depTerminal: "T1 (Quốc nội)", depGate: "08", arrTerminal: "T1 (Quốc nội)", arrGate: "15",
+            coords: [[21.218, 105.804], [10.818, 106.652]] 
+        },
+        "VN300": { 
+            dep: "SGN", arr: "NRT", depTime: "00:15", arrTime: "07:45", airline: "Vietnam Airlines", 
+            depTz: 7, arrTz: 9, depTerminal: "T2 (Quốc tế)", depGate: "22", arrTerminal: "T1 (North Wing)", arrGate: "26",
+            coords: [[10.818, 106.652], [35.772, 140.392]] 
+        }, 
+        "VJ198": { 
+            dep: "SGN", arr: "HAN", depTime: "14:30", arrTime: "16:40", airline: "VietJet Air", 
+            depTz: 7, arrTz: 7, depTerminal: "T1 (Quốc nội)", depGate: "Chưa cập nhật", arrTerminal: "T1", arrGate: "Chưa cập nhật",
+            coords: [[10.818, 106.652], [21.218, 105.804]] 
+        }
     };
 
     let map = null, planeMarker = null, liveGpsInterval = null;
@@ -226,7 +258,6 @@
     const flightInput = document.getElementById('flightInput');
     const suggestionsBox = document.getElementById('suggestions');
 
-    // Logic Gợi ý
     flightInput.addEventListener('input', function() {
         const val = this.value.toUpperCase();
         suggestionsBox.innerHTML = '';
@@ -251,7 +282,6 @@
     document.addEventListener('click', e => { if(e.target !== flightInput) suggestionsBox.style.display = 'none'; });
     flightInput.addEventListener("keypress", e => { if (e.key === "Enter") { e.preventDefault(); searchFlight(); } });
 
-    // Đặt lịch
     function setNativeAlarm() {
         if(!currentFlightInfo) return;
         const now = new Date();
@@ -272,7 +302,6 @@
         document.body.removeChild(link);
     }
 
-    // Đóng mở bản đồ
     function toggleMap() {
         const mapContainer = document.getElementById('mapContainer');
         const btn = document.getElementById('toggleMapBtn');
@@ -282,33 +311,28 @@
             mapContainer.style.display = 'block';
             btn.innerHTML = '🗺️ ĐÓNG BẢN ĐỒ';
             btn.classList.add('active');
-            if (map) map.resize(); // Cần thiết để MapLibre render đúng kích thước khi bỏ ẩn
+            if (map) map.resize(); 
         } else {
             mapContainer.style.display = 'none';
-            btn.innerHTML = '🗺️ MỞ BẢN ĐỒ';
+            btn.innerHTML = '🗺️ Radar Theo Dõi';
             btn.classList.remove('active');
         }
     }
 
-    // Xử lý Múi giờ
     function formatTimezoneInfo(timeStr, flightTz) {
         let diff = USER_TZ - flightTz;
         let sign = flightTz >= 0 ? "+" : "";
         let tzStr = `GMT${sign}${flightTz}`;
 
-        if (diff === 0) {
-            return `${tzStr} • Cùng múi giờ`;
-        } else {
-            let [h, m] = timeStr.split(':').map(Number);
-            let localH = h + diff;
-            if (localH < 0) localH += 24;
-            if (localH >= 24) localH -= 24;
-            let localTimeStr = String(localH).padStart(2, '0') + ':' + String(m).padStart(2, '0');
-            return `${tzStr} • ${localTimeStr} (Giờ của bạn)`;
-        }
+        if (diff === 0) return `${tzStr} • Cùng múi giờ`;
+        
+        let [h, m] = timeStr.split(':').map(Number);
+        let localH = h + diff;
+        if (localH < 0) localH += 24;
+        if (localH >= 24) localH -= 24;
+        return `${tzStr} • ${String(localH).padStart(2, '0')}:${String(m).padStart(2, '0')} (VN)`;
     }
 
-    // Tra cứu
     async function searchFlight() {
         let input = flightInput.value.trim().toUpperCase();
         if (!input || !flightData[input]) return alert("Chuyến bay chưa có trong CSDL (Thử VU750 hoặc VN300).");
@@ -317,17 +341,28 @@
         currentFlightInfo = flightData[input];
         suggestionsBox.style.display = 'none';
 
-        // Điền dữ liệu cơ bản
         document.getElementById('depCity').innerText = currentFlightInfo.dep;
         document.getElementById('arrCity').innerText = currentFlightInfo.arr;
         document.getElementById('depTime').innerText = currentFlightInfo.depTime;
         document.getElementById('arrTime').innerText = currentFlightInfo.arrTime;
         document.getElementById('airline').innerText = currentFlightInfo.airline;
         
-        // Múi giờ
         document.getElementById('depTz').innerText = formatTimezoneInfo(currentFlightInfo.depTime, currentFlightInfo.depTz);
         document.getElementById('arrTz').innerText = formatTimezoneInfo(currentFlightInfo.arrTime, currentFlightInfo.arrTz);
         
+        // ----------------------------------------------------
+        // CẬP NHẬT GIAO DIỆN NHÀ GA (TERMINAL) VÀ CỬA (GATE)
+        // ----------------------------------------------------
+        document.getElementById('depTerminalGate').innerText = `GA ${currentFlightInfo.depTerminal} • CỬA ${currentFlightInfo.depGate}`;
+        document.getElementById('arrTerminalGate').innerText = `GA ${currentFlightInfo.arrTerminal} • CỬA ${currentFlightInfo.arrGate}`;
+
+        // GẮN LINK GOOGLE MAPS CHO NÚT (Sử dụng tọa độ sân bay có sẵn trong mảng coords)
+        const depLat = currentFlightInfo.coords[0][0], depLng = currentFlightInfo.coords[0][1];
+        const arrLat = currentFlightInfo.coords[1][0], arrLng = currentFlightInfo.coords[1][1];
+        
+        document.getElementById('depMapLink').href = `https://www.google.com/maps/search/?api=1&query=${depLat},${depLng}`;
+        document.getElementById('arrMapLink').href = `https://www.google.com/maps/search/?api=1&query=${arrLat},${arrLng}`;
+
         document.getElementById('result').style.display = 'block';
 
         if (liveGpsInterval) clearInterval(liveGpsInterval);
@@ -361,34 +396,29 @@
         const signalEl = document.getElementById('signalType');
 
         if (liveData && liveData.lng && liveData.lat) {
-            // ĐANG BAY CÓ GPS
             badge.className = "status-badge flying";
             statusIcon.innerText = "🟢"; statusText.innerText = "Đang Bay";
             
             signalEl.innerText = "Live ADS-B"; signalEl.className = "detail-value val-success";
-            
             document.getElementById('altitude').innerText = Math.round(liveData.alt * 3.28084).toLocaleString() + " ft";
             document.getElementById('speed').innerText = Math.round(liveData.speed * 1.94384) + " kts";
             
             updatePlaneMarker([liveData.lng, liveData.lat], liveData.heading);
             if(map) map.flyTo({ center: [liveData.lng, liveData.lat], zoom: 6, speed: 0.5 });
         } else {
-            // MÔ PHỎNG TÍN HIỆU
             const p = calculateProgress(currentFlightInfo.depTime, currentFlightInfo.arrTime);
             
-            // Xử lý huy hiệu Trạng thái
             badge.className = "status-badge";
             if (p.percent === 0) {
                 statusIcon.innerText = "⏳"; statusText.innerText = "Chờ khởi hành";
             } else if (p.percent === 100) {
                 statusIcon.innerText = "🛬"; statusText.innerText = "Đã hạ cánh";
             } else {
-                badge.className = "status-badge flying"; // Thêm nhấp nháy
+                badge.className = "status-badge flying";
                 statusIcon.innerText = "✈️"; statusText.innerText = "Đang bay";
             }
 
-            signalEl.innerText = "Mô phỏng (Mất sóng)"; 
-            signalEl.className = "detail-value val-warning";
+            signalEl.innerText = "Mô phỏng (Mất sóng)"; signalEl.className = "detail-value val-warning";
             document.getElementById('altitude').innerText = "32,000 ft (Dự kiến)";
             document.getElementById('speed').innerText = "450 kts (Dự kiến)";
             
@@ -416,10 +446,7 @@
     function initMap(coords) {
         const route = turf.greatCircle([coords[0][1], coords[0][0]], [coords[1][1], coords[1][0]]);
         if (!map) {
-            map = new maplibregl.Map({ 
-                container: 'map', style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json', 
-                center: [coords[0][1], coords[0][0]], zoom: 4, attributionControl: false 
-            });
+            map = new maplibregl.Map({ container: 'map', style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json', center: [coords[0][1], coords[0][0]], zoom: 4, attributionControl: false });
             map.on('load', () => drawRouteLine(route));
         } else {
             drawRouteLine(route);
